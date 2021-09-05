@@ -3,7 +3,7 @@ import './SudokuPad.css';
 import { copySudoku } from '../helpers';
 
 
-const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
+const SudokuPad = ({ selectedCell, sudoku, setSudoku, update }) => {
     const cellValuesToggleButton = React.useRef(null);
     const notesToggleButton = React.useRef(null);
     const sudokuPadValues = React.useRef(null);
@@ -19,8 +19,8 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
     }, [])
 
     function onClickValue({ target }) {
-        if (target.classList.contains('sudoku-pad')) return;
-        if(!selectedCell) return;
+        if (!target.classList.contains('sudoku-pad-digit-button')) return;
+        if (!selectedCell) return;
         const row = Number(selectedCell.getAttribute('data-row'));
         const col = Number(selectedCell.getAttribute('data-col'));
 
@@ -42,7 +42,6 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
     function onKeyUp(evt) {
         if (!selectedCell) return;
         const target = evt.target;
-        if (target.classList.contains('sudoku-pad')) return;
         const key = evt.key;
         if (!['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key)) {
             return;
@@ -62,8 +61,8 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
     }
 
     function onClickNote({ target }) {
-        if (target.classList.contains('sudoku-pad')) return;
-        if(!selectedCell) return;
+        if (!target.classList.contains('sudoku-pad-digit-button')) return;
+        if (!selectedCell) return;
 
         const lowerCellOfSelectedCell = selectedCell.children[1];
         const noteValue = target.innerText.trim();
@@ -71,6 +70,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
         if (!lowerCellNotes) {
             lowerCellOfSelectedCell.setAttribute('data-notes', noteValue);
             lowerCellOfSelectedCell.innerText = noteValue;
+            update(Math.random());
             return;
         }
         lowerCellNotes = lowerCellNotes.split(',');
@@ -81,6 +81,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
                 lowerCellNotes.sort();
                 lowerCellOfSelectedCell.innerText = lowerCellNotes.join(' ');
                 lowerCellOfSelectedCell.setAttribute('data-notes', lowerCellNotes.join(','));
+                update(Math.random());
                 return;
             }
         }
@@ -88,6 +89,7 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
         lowerCellNotes.sort();
         lowerCellOfSelectedCell.innerText = lowerCellNotes.join(' ');
         lowerCellOfSelectedCell.setAttribute('data-notes', lowerCellNotes.join(','));
+        update(Math.random());
     }
 
 
@@ -98,13 +100,14 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
             notesToggleButton.current.removeAttribute('disabled');
             sudokuPadValues.current.style.display = '';
             sudokuPadNotes.current.style.display = 'none';
+
+            sudokuPadValues.current.focus();
         }
         else {
             notesToggleButton.current.setAttribute('disabled', true);
             cellValuesToggleButton.current.removeAttribute('disabled');
             sudokuPadNotes.current.style.display = '';
             sudokuPadValues.current.style.display = 'none';
-
         }
     }
 
@@ -113,14 +116,14 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku }) => {
     const valueDivs = [];
     const noteDivs = [];
     for (let i = 1; i < 10; i++) {
-        valueDivs.push(<div >{i}</div>);
-        noteDivs.push(<div >{i}</div>);
+        valueDivs.push(<div className='sudoku-pad-digit-button'>{i}</div>);
+        noteDivs.push(<div className='sudoku-pad-digit-button' >{i}</div>);
     }
 
     return (
         <div className={'sudoku-pad'}>
             <div id='sudoku-pad-buttons'>
-                <button  id='sudoku-pad-cell-values-toggle-button' disabled>Cell Values</button>
+                <button id='sudoku-pad-cell-values-toggle-button' disabled>Cell Values</button>
                 <button id="sudoku-pad-notes-toggle-button" onClick={onClickSudokuPadToggle} >Notes</button>
             </div>
             <div tabindex='0' onClick={onClickValue} onKeyUp={onKeyUp} id='sudoku-pad-values' className='sudoku-pad-values'>

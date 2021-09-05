@@ -3,7 +3,7 @@ import SudokuCell from "../SudokuCell/SudokuCell";
 import './SudokuGrid.css';
 
 
-const SudokuGrid = ({setSelectedCell, sudoku, originalSudoku, invalidCell}) => {
+const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell }) => {
     const gridDiv = React.useRef(null);
 
 
@@ -11,10 +11,10 @@ const SudokuGrid = ({setSelectedCell, sudoku, originalSudoku, invalidCell}) => {
         if (target !== gridDiv) {
             target = target.parentElement;
 
-            if(target.getAttribute('data-not-given') === 'false') return;
-            
-            if(invalidCell && target !== invalidCell){
-                invalidCell.classList.remove('selected-cell');
+            if (target.getAttribute('data-not-given') === 'false') return;
+
+            if (invalidCell && target !== invalidCell) {
+                document.querySelector('.sudoku-pad-values').focus();
                 return;
             }
 
@@ -25,7 +25,7 @@ const SudokuGrid = ({setSelectedCell, sudoku, originalSudoku, invalidCell}) => {
                 const child = children[i];
                 if (child === target) {
                     child.classList.add('selected-cell');
-                    selectedCell = child;     
+                    selectedCell = child;
                 }
                 else {
                     child.classList.remove('selected-cell');
@@ -40,9 +40,9 @@ const SudokuGrid = ({setSelectedCell, sudoku, originalSudoku, invalidCell}) => {
 
     const gridArray = [];
     for (let i = 0; i < 9; i++) {
-        for(let j = 0; j < 9; j++){
-            let given = (originalSudoku[i][j] !== '0') ? true : false; 
-            gridArray.push(<SudokuCell cellRow={i} cellCol={j} value={sudoku[i][j]} given={given}/>);
+        for (let j = 0; j < 9; j++) {
+            let given = (originalSudoku[i][j] !== '0') ? true : false;
+            gridArray.push(<SudokuCell cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} />);
         }
     }
 
@@ -51,9 +51,16 @@ const SudokuGrid = ({setSelectedCell, sudoku, originalSudoku, invalidCell}) => {
     }, []);
 
 
+
     return (
-        <div className='grid-div' id='grid-div' onClick={onClick}>
-            {gridArray}
+        <div>
+            <div className='grid-hor-bar' id='grid-first-hor-bar'></div>
+            <div className='grid-hor-bar' id='grid-second-hor-bar'></div>
+            <div className='grid-ver-bar' id='grid-first-ver-bar'></div>
+            <div className='grid-ver-bar' id='grid-second-ver-bar'></div>
+            <div className='grid-div' id='grid-div' onClick={onClick}>
+                {gridArray}
+            </div>
         </div>
     );
 };

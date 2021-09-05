@@ -1,13 +1,53 @@
 .grid-div {
     display: grid; 
     grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px 60px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, .3);
     column-gap: 5px;
     row-gap: 5px;
     border-top: black 5px solid; 
     border-left: black 5px solid; 
     border-bottom: black 5px solid; 
-    margin-left: auto;
-    margin-right: auto; 
+    border-right: black 5px solid; 
+    margin-left: 100px;
+    width: 580px;
+    padding-left:0;
+    padding-right: 0;
+    z-index: 1;
+}
+.grid-div div {
+    position: relative;
+    z-index: 3;
+}
+
+.grid-hor-bar {
+    position: absolute;
+    z-index: 2;
+    height: 5px; 
     width: 590px;
+    background-color: black;
+    margin-left: 100px;
+}
+
+#grid-first-hor-bar {
+    top: 195px;
+}
+
+#grid-second-hor-bar {
+    top: 390px;
+}
+
+.grid-ver-bar {
+    position: absolute;
+    z-index: 2;
+    height: 590px; 
+    width: 5px;
+    background-color: black;
+}
+
+#grid-first-ver-bar {
+    margin-left: 295px;
+}
+
+#grid-second-ver-bar {
+    margin-left: 490px;
 }

@@ -24,10 +24,13 @@
 }
 
 .selected-cell {
-    background-color: rgb(255, 255, 0);
+    background-color: rgb(248, 248, 126);
 }
 
 .invalid-cell {
-    color: red; 
-    border: red 1px solid;
+    background-color: rgb(241, 105, 105);
+}
+
+.given {
+    color: slateblue;
 }

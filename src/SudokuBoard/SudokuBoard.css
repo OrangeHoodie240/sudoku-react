@@ -1,0 +1,26 @@
+.sudoku-board {
+    width: 90%; 
+    margin-left: 10%;
+}
+
+.sudoku-board-sudoku-grid {
+    float: left; 
+
+}
+.sudoku-board-sudoku-pad {
+    float: left; 
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.sudoku-board-magnified-cell {
+    float: left;
+    margin-left: 5%;
+    margin-top: 33%;
+}
+
+.clearFloat::after {
+    display: table; 
+    content: '';
+    clear: both; 
+}
