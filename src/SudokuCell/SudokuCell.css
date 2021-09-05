@@ -1,0 +1,33 @@
+
+.outer-cell {
+    width: 100%; 
+    height: 100%;
+    background-color: white; 
+    width: 60px; 
+    height: 60px;
+    font-size: 20px;
+}
+
+
+.upper-cell {
+    text-align: center;
+    width: 100%;
+    height: 60%;
+}
+
+.lower-cell {
+    text-align: center;
+    width: 100%; 
+    height: 40%;
+    font-size: .4rem;
+    word-wrap: break-word;
+}
+
+.selected-cell {
+    background-color: rgb(255, 255, 0);
+}
+
+.invalid-cell {
+    color: red; 
+    border: red 1px solid;
+}
