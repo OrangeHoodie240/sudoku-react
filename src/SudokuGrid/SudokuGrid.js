@@ -3,13 +3,17 @@ import SudokuCell from "../SudokuCell/SudokuCell";
 import './SudokuGrid.css';
 
 
-const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell }) => {
+const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hintCell, setHintCell }) => {
     const gridDiv = React.useRef(null);
 
 
     function onClick({ target }) {
         if (target !== gridDiv) {
             target = target.parentElement;
+            if(hintCell && hintCell !== target){
+                    hintCell.classList.remove('hintCell'); 
+                    setHintCell(null);
+            }
 
             if (target.getAttribute('data-not-given') === 'false') return;
 

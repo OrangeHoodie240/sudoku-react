@@ -41,7 +41,6 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update }) => {
 
     function onKeyUp(evt) {
         if (!selectedCell) return;
-        const target = evt.target;
         const key = evt.key;
         if (!['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(key)) {
             return;

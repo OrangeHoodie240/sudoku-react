@@ -34,3 +34,7 @@
 .given {
     color: slateblue;
 }
+
+.hintCell {
+    background-color: rgba(88, 236, 88, 0.884);
+}

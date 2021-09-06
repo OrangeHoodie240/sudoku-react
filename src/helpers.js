@@ -1,54 +1,29 @@
 
 
+async function getPuzzle(level) {
+    const url = 'https://steven-sudoku-api.herokuapp.com/sudoku?level=' + level;
+    const puzzle = await fetch(url)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error("Error! Status:", resp.status);
+            }
+            return resp.json();
+        })
+        .then(data => {
+            return data.data;
+        })
+        .catch(err => console.error(err));
 
-function getThisSudoku() {
-    return [
-        [
-            '0', '2', '3',
-            '0', '5', '6',
-            '7', '8', '0'
-        ],
-        [
-            '0', '0', '7',
-            '2', '0', '0',
-            '1', '0', '0'
-        ],
-        [
-            '9', '0', '8',
-            '1', '0', '0',
-            '0', '0', '0'
-        ],
-        [
-            '0', '0', '0',
-            '5', '0', '4',
-            '8', '6', '7'
-        ],
-        [
-            '0', '0', '0',
-            '0', '7', '0',
-            '0', '0', '0'
-        ],
-        [
-            '0', '0', '0',
-            '0', '2', '0',
-            '5', '0', '4'
-        ],
-        [
-            '0', '0', '0',
-            '0', '0', '0',
-            '0', '7', '0'
-        ],
-        [
-            '4', '0', '2',
-            '0', '0', '0',
-            '0', '0', '0'
-        ],
-        [
-            '7', '1', '0',
-            '0', '0', '2',
-            '0', '0', '3'
-        ]
-    ];
+    return puzzle;
+}
+
+function flattenPuzzle(puzzle){
+    let flatPuzzle = [];
+    for(let i = 0; i < 9; i++){
+        flatPuzzle.push(...puzzle[i]);
+    }
+
+    return flatPuzzle.join(',');
 }
 
 function copySudoku(sudoku) {
@@ -158,5 +133,5 @@ function isBoardValid(sudoku) {
     return true;
 }
 
-export default getThisSudoku;
-export { copySudoku, isBoardFull, isBoardValid };
+export default getPuzzle;
+export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle };

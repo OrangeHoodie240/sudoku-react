@@ -8,11 +8,11 @@ const SudokuCell = ({cellRow, cellCol, value=5, given})=>{
     const upperCellClasses = (given) ? 'upper-cell given' : 'upper-cell';     
 
     React.useEffect(()=>{
-        outerCell.current = document.getElementById('SudokuCell-' + cellRow + ',' + cellCol);
+        outerCell.current = document.getElementById('sudoku-cell-' + cellRow + '-' + cellCol);
     }, []); 
 
     return (<>
-                        <div id={'SudokuCell-' + cellRow + ',' + cellCol} data-row={cellRow} data-col={cellCol} className='outer-cell' data-not-given={notGiven}>
+                        <div id={'sudoku-cell-' + cellRow + '-' + cellCol} data-row={cellRow} data-col={cellCol} className='outer-cell' data-not-given={notGiven}>
                             <div className={upperCellClasses}>{(notGiven) ? '' : value}</div>
                             <div className='lower-cell' data-notes=''></div>
                         </div>
