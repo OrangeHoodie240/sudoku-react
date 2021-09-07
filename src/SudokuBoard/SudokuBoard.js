@@ -91,22 +91,24 @@ const SudokuBoard = () => {
 
     return (
         <div className='sudoku-board'>
+            
             <div className='sudoku-board-sudoku-grid'>
                 <SudokuGrid setHintCell={setHintCell} hintCell={hintCell} setSelectedCell={setSelectedCell} invalidCell={invalidCell} sudoku={sudoku} originalSudoku={orignialSudoku.current} />
             </div>
-            <div className='sudoku-board-sudoku-pad'>
-                <SudokuPad selectedCell={selectedCell} update={update} sudoku={sudoku} setSudoku={setSudoku} />
-            </div>
-            {selectedCell ? <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div> : null}
-            <div className='clearFloat'></div>
-            <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} resetBoard={resetBoard} />
-            <select onChange={selectPuzzle}>
+            <label for='difficulty-selector'>Difficulty: </label>
+            <select id='difficulty-selector' className='sudoku-board-select' onChange={selectPuzzle}>
                 <option value='one'>Level One</option>
                 <option value='two'>Level Two</option>
                 <option value='three'>Level Three</option>
                 <option value='four'>Level Four</option>
                 <option value='five'>Level Five</option>
             </select>
+            <div className='sudoku-board-sudoku-pad'>
+                <SudokuPad selectedCell={selectedCell} update={update} sudoku={sudoku} setSudoku={setSudoku} />
+            </div>
+            {selectedCell ? <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div> : null}
+            <div className='clearFloat'></div>
+            <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} resetBoard={resetBoard} />
         </div>
     );
 
