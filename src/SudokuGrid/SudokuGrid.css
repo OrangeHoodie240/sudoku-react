@@ -87,4 +87,11 @@
     #grid-second-ver-bar {
         margin-left: 390px;
     }
+    #grid-first-hor-bar {
+        top: 195px;
+    }
+    
+    #grid-second-hor-bar {
+        top: 390px;
+    }
 }

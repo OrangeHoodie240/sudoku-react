@@ -14,7 +14,6 @@ const SudokuBoard = () => {
     const [sudoku, setSudoku] = React.useState(null);
     const [hintCell, setHintCell] = React.useState(null);
 
-
     // for updating entire board from within child
     const [_, update] = React.useState(null);
 
@@ -71,7 +70,10 @@ const SudokuBoard = () => {
     
     async function selectPuzzle(evt){
         let level = evt.target.value; 
-        const puzzle = await getPuzzle(level); 
+
+        // data also has the puzzleId
+        const data = await getPuzzle(level);
+        const puzzle = data.puzzle;  
         orignialSudoku.current = puzzle;
         resetBoard(); 
         setSudoku(copySudoku(puzzle));
@@ -80,7 +82,9 @@ const SudokuBoard = () => {
 
     React.useEffect(()=>{
         async function loadPuzzle(){
-            const puzzle = await getPuzzle('one');
+            // data also has the puzzleId
+            const data = await getPuzzle('one');
+            const puzzle = data.puzzle;
             orignialSudoku.current = puzzle; 
             setSudoku(copySudoku(puzzle));
         }

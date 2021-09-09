@@ -57,7 +57,7 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
 
 
     return (
-        <div>
+        <div id='outer-grid-div'>
             <div className='grid-hor-bar' id='grid-first-hor-bar'></div>
             <div className='grid-hor-bar' id='grid-second-hor-bar'></div>
             <div className='grid-ver-bar' id='grid-first-ver-bar'></div>
