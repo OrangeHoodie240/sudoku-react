@@ -133,5 +133,18 @@ function isBoardValid(sudoku) {
     return true;
 }
 
+function convertTo2DArray(puzzle){
+    puzzle = puzzle.split(',');
+    let puzzleArray = [];
+    for(let i = 0; i < 9; i++){
+        let row = [];
+        for(let j = 0; j < 9; j++){
+            row.push(puzzle.shift()); 
+        }
+        puzzleArray.push(row);
+    }
+    return puzzleArray; 
+}
+
 export default getPuzzle;
-export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle };
+export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, convertTo2DArray };

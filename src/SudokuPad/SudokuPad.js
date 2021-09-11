@@ -3,7 +3,7 @@ import './SudokuPad.css';
 import { copySudoku } from '../helpers';
 
 
-const SudokuPad = ({ selectedCell, sudoku, setSudoku, update }) => {
+const SudokuPad = ({ selectedCell, sudoku, setSudoku, update, setPuzzleInfo}) => {
     const cellValuesToggleButton = React.useRef(null);
     const notesToggleButton = React.useRef(null);
     const sudokuPadValues = React.useRef(null);
@@ -30,12 +30,27 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update }) => {
             upperCellOfSelectedCell.innerText = '';
             sudoku[row][col] = '0';
             setSudoku(copySudoku(sudoku));
+            setPuzzleInfo(puzzleInfo => {
+                const newInfo = {};
+                newInfo.puzzleId = puzzleInfo.puzzleId; 
+                newInfo.level = puzzleInfo.level; 
+                newInfo.puzzle = copySudoku(sudoku); 
+                return newInfo;
+            });
             return;
         }
 
         upperCellOfSelectedCell.innerText = value;
         sudoku[row][col] = value;
         setSudoku(copySudoku(sudoku));
+        setPuzzleInfo(puzzleInfo => {
+            const newInfo = {};
+            newInfo.puzzleId = puzzleInfo.puzzleId; 
+            newInfo.level = puzzleInfo.level; 
+            newInfo.puzzle = copySudoku(sudoku); 
+            return newInfo;
+        });
+
     }
 
 
@@ -52,11 +67,25 @@ const SudokuPad = ({ selectedCell, sudoku, setSudoku, update }) => {
             upperCellOfSelectedCell.innerText = '';
             sudoku[row][col] = '0';
             setSudoku(copySudoku(sudoku));
+            setPuzzleInfo(puzzleInfo => {
+                const newInfo = {};
+                newInfo.puzzleId = puzzleInfo.puzzleId; 
+                newInfo.level = puzzleInfo.level; 
+                newInfo.puzzle = copySudoku(sudoku); 
+                return newInfo;
+            });
             return;
         }
         upperCellOfSelectedCell.innerText = key;
         sudoku[row][col] = key;
         setSudoku(copySudoku(sudoku));
+        setPuzzleInfo(puzzleInfo => {
+            const newInfo = {};
+            newInfo.puzzleId = puzzleInfo.puzzleId; 
+            newInfo.level = puzzleInfo.level; 
+            newInfo.puzzle = copySudoku(sudoku); 
+            return newInfo;
+        });
     }
 
     function onClickNote({ target }) {

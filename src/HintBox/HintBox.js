@@ -51,7 +51,7 @@ const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku,
 
     return (
         <div>
-            <button onClick={getHint} id='hint-button'>Get Hint</button>
+            <button onClick={getHint} id='hint-button'>Hint</button>
             <div className='hint-message'>
                 {(hintCell) ? hintMessage : ''}
                 {(hintCell) ? <button onClick={viewSolution} className='solution-button'>See Solution</button> : ''}

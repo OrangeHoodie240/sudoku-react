@@ -17,6 +17,6 @@
 .sudoku-pad-notes div, .sudoku-pad-values div{
     background-color: gray;
     text-align: center;
-    padding: 10px;
+    padding: 30px;
 }
 
