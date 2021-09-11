@@ -15,6 +15,8 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     const [hintCell, setHintCell] = React.useState(null);
     const [level, setLevel] = React.useState(null);
     const [puzzleId, setPuzzleId] = React.useState(null);
+    const messageDiv = React.useRef(document.getElementById('message-div'));
+
 
     // for updating entire board from within child
     const [_, update] = React.useState(null);
@@ -33,8 +35,16 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         }
 
         if (isBoardFull(sudoku) && valid) {
-            alert('you win!');
+            if (messageDiv.current) {
+                messageDiv.current.innerText = 'You Win!';
+            }
         }
+        else {
+            if (messageDiv.current) {
+                messageDiv.current.innerText = '';
+            }
+        }
+
     }
 
     function resetBoard() {
@@ -44,7 +54,6 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         let cellLength = children.length;
         for (let i = 0; i < cellLength; i++) {
             const cell = children[i];
-            cell.children[0].innerText = '';
             cell.children[1].innerText = '';
         }
 
@@ -70,13 +79,13 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
     }
 
 
+
     async function selectPuzzle(evt) {
         let level = evt.target.value;
 
         const data = await getPuzzle(level);
         const puzzle = data.puzzle;
         orignialSudoku.current = puzzle;
-
         resetBoard();
         setSudoku(copySudoku(puzzle));
         setPuzzleId(data.puzzleId);
@@ -84,7 +93,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
         if (setPuzzleInfo) {
             setPuzzleInfo({ puzzle: copySudoku(puzzle), level, puzzleId: data.puzzleId });
         }
-        if(setIsSavedPuzzleUsed){
+        if (setIsSavedPuzzleUsed) {
             setIsSavedPuzzleUsed(false);
         }
     }
@@ -102,8 +111,8 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
                 puzzle = data.puzzle;
             }
             else {
-                level = puzzleInfo.level; 
-                puzzle = puzzleInfo.puzzle; 
+                level = puzzleInfo.level;
+                puzzle = puzzleInfo.puzzle;
                 puzzleId = puzzleInfo.puzzleId;
             }
             orignialSudoku.current = puzzle;
@@ -111,7 +120,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             setPuzzleId(puzzleId);
             setLevel(level);
             if (setPuzzleInfo) {
-                setPuzzleInfo({ puzzle: copySudoku(puzzle), level, puzzleId});
+                setPuzzleInfo({ puzzle: copySudoku(puzzle), level, puzzleId });
             }
         }
         loadPuzzle();

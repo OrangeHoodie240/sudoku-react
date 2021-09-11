@@ -41,7 +41,6 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
         }
     }
 
-
     const gridArray = [];
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
@@ -49,6 +48,8 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
             gridArray.push(<SudokuCell cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} />);
         }
     }
+
+
 
     React.useEffect(() => {
         gridDiv.current = document.getElementById('grid-div');

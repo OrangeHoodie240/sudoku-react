@@ -10,7 +10,9 @@ function App() {
   const [isSavedPuzzleUsed, setIsSavedPuzzleUsed] = React.useState(false);
 
   return (<>
-            <NavBar isSavedPuzzleUsed={isSavedPuzzleUsed} puzzleInfo={puzzleInfo} setViewSavedPuzzles={setViewSavedPuzzles} />
+            <NavBar viewSavedPuzzles={viewSavedPuzzles} isSavedPuzzleUsed={isSavedPuzzleUsed} puzzleInfo={puzzleInfo} setViewSavedPuzzles={setViewSavedPuzzles} />
+            <div id='message-div'></div>
+            
             {(!viewSavedPuzzles) ?  <SudokuBoard setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} puzzleInfo={puzzleInfo} /> : <SavedPuzzles setIsSavedPuzzleUsed={setIsSavedPuzzleUsed} setPuzzleInfo={setPuzzleInfo} setViewSavedPuzzles={setViewSavedPuzzles} />}
   </>);
 }

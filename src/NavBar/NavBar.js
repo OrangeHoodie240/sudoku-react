@@ -3,7 +3,7 @@ import { flattenPuzzle } from "../helpers";
 import './NavBar.css';
 
 
-const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed }) => {
+const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed, viewSavedPuzzles }) => {
     const [loginState, setLoginState] = React.useState({ email: '', password: '' });
     const [registerState, setRegisterState] = React.useState({ email: '', password: '' });
     const [loggedInStatus, setLoggedInStatus] = React.useState(false);
@@ -167,6 +167,12 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed }) => {
     }
 
     async function onViewSavedPuzzles(evt) {
+        if(!viewSavedPuzzles){
+           evt.target.innerText = 'Back To Puzzle';  
+        }
+        else{
+            evt.target.innerText = 'View Saved Puzzles';
+        }
         setViewSavedPuzzles(value => !value);
     }
 
@@ -190,7 +196,7 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed }) => {
 
     const logOut = <button onClick={onLogOut}>Log Out</button>;
     const savePuzzle = <button id='save-puzzle' onClick={onSavePuzzle} >Save Puzzle</button>;
-    const viewSavedPuzzles = <button id='view-saved-puzzles' onClick={onViewSavedPuzzles}>View Saved Puzzles</button>;
+    const viewSavedPuzzlesButton = <button id='view-saved-puzzles' onClick={onViewSavedPuzzles}>View Saved Puzzles</button>;
     const updatePuzzle = <button id='update-puzzle' onClick={onUpdatePuzzle}>Update Puzzle</button>
     return (
         <nav>
@@ -198,7 +204,7 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed }) => {
             {(!loggedInStatus) ? register : null}
             {(loggedInStatus && !isSavedPuzzleUsed) ? savePuzzle : null}
             {(loggedInStatus && isSavedPuzzleUsed) ? updatePuzzle : null}
-            {(loggedInStatus) ? viewSavedPuzzles : null}
+            {(loggedInStatus) ? viewSavedPuzzlesButton : null}
         </nav>
     );
 };

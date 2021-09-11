@@ -36,6 +36,7 @@ const SavedPuzzles = ({ setPuzzleInfo, setViewSavedPuzzles, setIsSavedPuzzleUsed
         setPuzzleInfo({ level, puzzle, puzzleId });
         setViewSavedPuzzles(val => !val);
         setIsSavedPuzzleUsed(true);
+        document.getElementById('view-saved-puzzles').innerText = 'View Saved Puzzles';
     }
 
 
