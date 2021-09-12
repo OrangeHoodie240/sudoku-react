@@ -47,14 +47,24 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
 
     }
 
-    function resetBoard() {
+    function resetBoard(puzzle) {
         // reset grid
         const gridDiv = document.querySelector('#grid-div');
         let children = gridDiv.children;
-        let cellLength = children.length;
-        for (let i = 0; i < cellLength; i++) {
-            const cell = children[i];
-            cell.children[1].innerText = '';
+        let gridInd = null ;
+        for(let i = 0; i < 9; i++){
+            for(let j = 0; j < 9; j++){
+                if(gridInd === null)  gridInd = 0; 
+                const cell = children[gridInd];
+                cell.children[1].innerText = '';
+
+
+                if(puzzle[i][j] === '0'){
+                    cell.children[0].innerText = '';
+                }
+
+                gridInd++; 
+            }
         }
 
         // reset selectedCell
@@ -85,8 +95,9 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
 
         const data = await getPuzzle(level);
         const puzzle = data.puzzle;
+        resetBoard(puzzle);
+
         orignialSudoku.current = puzzle;
-        resetBoard();
         setSudoku(copySudoku(puzzle));
         setPuzzleId(data.puzzleId);
         setLevel(level);
@@ -145,7 +156,7 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
                 </select>
             </div>
             <div className='hint-box'>
-                <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} resetBoard={resetBoard} />
+                <HintBox sudoku={sudoku} selectedCell={selectedCell} hintCell={hintCell} setHintCell={setHintCell} setSelectedCell={setSelectedCell} />
             </div>
             {selectedCell ? <div className='sudoku-board-magnified-cell'><MagnifiedCell selectedCell={selectedCell} /></div> : null}
             <div className='clearFloat'></div>

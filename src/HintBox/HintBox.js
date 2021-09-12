@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { flattenPuzzle } from "../helpers";
 import './HintBox.css';
 
-const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku, resetBoard }) => {
+const HintBox = ({ setSelectedCell, setHintCell, selectedCell, hintCell, sudoku }) => {
     const [hintMessage, setHintMessage] = useState(null);
     const [hintValue, setHintValue] = useState(null);
 
