@@ -151,8 +151,6 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
                     <option value='one'>Level One</option>
                     <option value='two'>Level Two</option>
                     <option value='three'>Level Three</option>
-                    <option value='four'>Level Four</option>
-                    <option value='five'>Level Five</option>
                 </select>
             </div>
             <div className='hint-box'>

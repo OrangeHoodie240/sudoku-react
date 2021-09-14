@@ -25,3 +25,13 @@ button:disabled {
     color: white;
 }
 
+@media screen and (max-width: 800px) {
+    .sudoku-pad-notes, .sudoku-pad-values {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100vw; 
+    }
+    .sudoku-pad-notes div, .sudoku-pad-values div{
+        padding: 10px;
+    }
+}
