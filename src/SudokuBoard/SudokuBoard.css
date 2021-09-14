@@ -1,32 +1,3 @@
-/* .sudoku-board {
-    width: 90%; 
-    margin-left: 10%;
-}
-
-
-.sudoku-board-sudoku-grid {
-    float: left; 
-
-}
-.sudoku-board-sudoku-pad {
-    margin-left: 5%;
-    margin-top: 5%;
-    width: 40%;
-}
-
-.sudoku-board-magnified-cell {
-    float: left;
-    margin-left: 5%;
-    margin-top: 33%;
-}
-
-.clearFloat::after {
-    display: table; 
-    content: '';
-    clear: both; 
-} */
-
-
 
 .sudoku-board{
     display: grid; 
@@ -59,55 +30,36 @@
 
 
 @media screen and (max-width: 800px) {
-    .sudoku-board {
-        width: 100%; 
+    .sudoku-board{
         margin-left: 0; 
+        grid-template-columns: 100vh;
     }
 
-    .sudoku-board-sudoku-pad {
-        width : 80%;
+    .sudoku-board-magnified-cell {
+        display: none;
+    }
+
+    
+    .sudoku-board-sudoku-grid {
+        grid-row: 2 / 8; 
+        grid-column: 1;
     }
     
-    .sudoku-board-magnified-cell {
-        display: none;
-    }
+    .difficulty-selector {
+        grid-row: 1; 
+        grid-column: 1;
 
-
-    .sudoku-board-sudoku-pad {
-        float: none; 
-        margin-left: 0;
-        margin-top: 0;
-    }
-
-}
-
-@media screen and (max-width: 600px) {
-    .sudoku-board {
-        width: 100%; 
-        margin-left: 0; 
-    }
-
-    .sudoku-board-sudoku-pad {
-        width : 100%;
-    }
-
-    .sudoku-board-magnified-cell {
-        display: none;
-    }
-    .sudoku-board-magnified-cell {
-        display: none;
-    }
-
-    .sudoku-board-select {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .sudoku-board-sudoku-pad {
-        float: none; 
-        margin-left: 0;
-        margin-top: 0;
     }
     
+    .sudoku-board-sudoku-pad {
+        grid-row: 9 / 12;
+        grid-column: 1;
+
+    }
+    
+    .hint-box {
+        grid-row: 13; 
+        grid-column: 1; 
+    }
+
 }

@@ -86,10 +86,10 @@
         margin-left: 390px;
     }
     #grid-first-hor-bar {
-        top: 195px;
+        margin-top: 195px;
     }
     
     #grid-second-hor-bar {
-        top: 390px;
+        margin-top: 390px;
     }
 }
