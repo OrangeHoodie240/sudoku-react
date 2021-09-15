@@ -205,6 +205,7 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed, viewSavedP
             {(loggedInStatus && !isSavedPuzzleUsed) ? savePuzzle : null}
             {(loggedInStatus && isSavedPuzzleUsed) ? updatePuzzle : null}
             {(loggedInStatus) ? viewSavedPuzzlesButton : null}
+            <button><a href='https://orangehoodie240.github.io/sudoku_tutorial/' target="_blank">Tutorial</a></button>
         </nav>
     );
 };
