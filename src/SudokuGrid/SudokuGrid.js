@@ -7,6 +7,7 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
     const gridDiv = React.useRef(null);
 
 
+
     function onClick({ target }) {
         if (target !== gridDiv) {
             target = target.parentElement;
@@ -45,7 +46,7 @@ const SudokuGrid = ({ setSelectedCell, sudoku, originalSudoku, invalidCell, hint
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             let given = (originalSudoku[i][j] !== '0') ? true : false;
-            gridArray.push(<SudokuCell cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} />);
+            gridArray.push(<SudokuCell key={i + '-' + j} cellRow={i} cellCol={j} value={sudoku[i][j]} given={given} />);
         }
     }
 

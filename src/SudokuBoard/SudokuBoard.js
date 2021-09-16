@@ -2,7 +2,7 @@ import React from "react";
 import SudokuGrid from "../SudokuGrid/SudokuGrid";
 import SudokuPad from "../SudokuPad/SudokuPad";
 import MagnifiedCell from "../MagnifiedCell/MagnifiedCell";
-import getPuzzle, { copySudoku, isBoardFull, isBoardValid, flattenPuzzle } from "../helpers";
+import getPuzzle, { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, getSpecificPuzzle } from "../helpers";
 import './SudokuBoard.css';
 import HintBox from "../HintBox/HintBox";
 
@@ -115,18 +115,25 @@ const SudokuBoard = ({ puzzleInfo, setPuzzleInfo, setIsSavedPuzzleUsed }) => {
             let puzzle = null;
             let level = null;
             let puzzleId = null;
+
+            let originalPuzzle = null;
             if (!puzzleInfo) {
                 level = 'one';
                 const data = await getPuzzle(level);
                 puzzleId = data.puzzleId;
                 puzzle = data.puzzle;
+
+                originalPuzzle = puzzle;
             }
             else {
                 level = puzzleInfo.level;
                 puzzle = puzzleInfo.puzzle;
                 puzzleId = puzzleInfo.puzzleId;
+
+                originalPuzzle = await getSpecificPuzzle(level, puzzleId); 
+                originalPuzzle = originalPuzzle.puzzle; 
             }
-            orignialSudoku.current = puzzle;
+            orignialSudoku.current = originalPuzzle;
             setSudoku(copySudoku(puzzle));
             setPuzzleId(puzzleId);
             setLevel(level);

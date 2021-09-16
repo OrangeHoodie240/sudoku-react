@@ -17,6 +17,23 @@ async function getPuzzle(level) {
     return puzzle;
 }
 
+async function getSpecificPuzzle(level,id) {
+    const url = 'https://steven-sudoku-api.herokuapp.com/sudoku/' + level + '/' + id;
+    const puzzle = await fetch(url)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error("Error! Status:", resp.status);
+            }
+            return resp.json();
+        })
+        .then(data => {
+            return data.data;
+        })
+        .catch(err => console.error(err));
+
+    return puzzle;
+}
+
 function flattenPuzzle(puzzle){
     let flatPuzzle = [];
     for(let i = 0; i < 9; i++){
@@ -147,4 +164,4 @@ function convertTo2DArray(puzzle){
 }
 
 export default getPuzzle;
-export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, convertTo2DArray };
+export { copySudoku, isBoardFull, isBoardValid, flattenPuzzle, convertTo2DArray, getSpecificPuzzle };

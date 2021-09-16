@@ -12,10 +12,13 @@
     background-color: black;
     column-gap: 3px;
     row-gap: 3px;
+    border: black solid 2px;
 }
 
 .sudoku-pad-notes div, .sudoku-pad-values div{
     background-color: gray;
+    border: solid white 1px;
+    border-radius: 5%; 
     text-align: center;
     padding: 30px;
 }
