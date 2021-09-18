@@ -111,6 +111,8 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed, viewSavedP
         localStorage.removeItem('token');
         localStorage.removeItem('id');
         setLoggedInStatus(false);
+        setLoginState({email: '', password: ''});
+        setRegisterState({email: '', password: ''});
     }
 
     async function onSavePuzzle(evt) {
@@ -200,6 +202,7 @@ const NavBar = ({ puzzleInfo, setViewSavedPuzzles, isSavedPuzzleUsed, viewSavedP
     const updatePuzzle = <button id='update-puzzle' onClick={onUpdatePuzzle}>Update Puzzle</button>
     return (
         <nav>
+            Play Sudoku 
             {(!loggedInStatus) ? logIn : logOut}
             {(!loggedInStatus) ? register : null}
             {(loggedInStatus && !isSavedPuzzleUsed) ? savePuzzle : null}
